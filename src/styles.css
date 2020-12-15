@@ -1,0 +1,266 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+    padding: 80px 0 0;
+}
+
+header {
+    padding-bottom: 20px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    text-align: right;
+}
+
+h1 {
+    font-size: 18px;
+    color: #454C54;
+    margin: 0;
+    padding: 6px 0;
+    position: relative;
+    top: 5px;
+}
+
+h2 {
+    font-size: 28px;
+    color: #454C54;
+    padding: 36px 0 0 0;
+}
+
+h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #8C8D91;
+}
+
+h4 {
+    font-size: 11px;
+    font-weight: 400;
+    text-align: center;
+    color: #8C8D91;
+    padding: 5px 0 0 0;
+}
+
+input {
+    font-style: italic;
+}
+
+table {
+    position: relative;
+    top: 10px;
+    left: -5px;
+}
+
+hr {
+    margin: 15px -8px;
+}
+
+.container {
+    min-width: 700px;
+    width: 90%;
+    max-width: 900px;
+    margin-bottom: 175px;
+}
+
+.search-button {
+    padding-left: 10px;
+}
+
+/* CURRENT WEATHER */
+
+#current-day {
+    font-weight: 400;
+}
+
+.current-weather {
+    font-size: 60px;
+    font-weight: 500;
+    color: #454C54;
+    position: relative;
+    left: 60px;
+}
+
+.current-weather-emoji {
+    color: #8C8D91;
+}
+
+#temp-units {
+    font-size: 18px;
+    font-weight: 600;
+    color: #8C8D91;
+    position: relative;
+    left: -8px;
+    top: -29px;
+}
+
+.table-sm {
+    margin: 0;
+}
+
+.current-weather-conditions,
+.current-weather-conditions-values {
+    font-size: 12px;
+    color: #454C54;
+}
+
+.current-weather-conditions {
+    text-align: right;
+}
+
+.current-weather-conditions-values {
+    font-weight: 600;
+}
+
+/* CURRENT DAY FORECAST */
+
+.current-day-forecast-container {
+    display: flex;
+    flex-direction: row;
+    padding: 30px 15px 10px 15px;
+}
+
+.day-forecast-by-hour-container {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.fa-circle {
+    font-size: 8px;
+    color: #454C54;
+}
+
+.day-forecast-temperature {
+    font-size: 12px;
+    font-weight: 700;
+    color: #454C54;
+}
+
+.day-forecast-emoji {
+    font-size: 18px;
+    color: #8C8D91;
+    padding-top: 10px;
+}
+
+/* FIVE DAY FORECAST */
+
+.five-day-forecast-container {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.five-day-forecast-panels {
+    text-align: center;
+    min-width: 70px;
+    max-width: 100px;
+    border: solid 1px #DFDFDF;
+    border-radius: 5px;
+    transition: 300ms ease-in-out;
+    flex-grow: 1;
+    margin-left: 8px;
+    margin-right: 8px;
+    padding: 15px;
+}
+
+.five-day-forecast-panels:hover {
+    border: solid 1px #DFDFDF;
+    border-radius: 5px;
+    box-shadow: 0 0 20px #DFDFDF;
+}
+
+.forecast-day-one-day,
+.forecast-day-two-day,
+.forecast-day-three-day,
+.forecast-day-four-day,
+.forecast-day-five-day {
+    font-size: 12px;
+    color: #8C8D91;
+}
+
+.forecast-day-one-emoji,
+.forecast-day-two-emoji,
+.forecast-day-three-emoji,
+.forecast-day-four-emoji,
+.forecast-day-five-emoji {
+    font-size: 32px;
+    color:#8C8D91;
+}
+
+.forecast-day-one-temp,
+.forecast-day-two-temp,
+.forecast-day-three-temp,
+.forecast-day-four-temp,
+.forecast-day-five-temp {
+    font-size: 12px;
+    font-weight: 700;
+    color: #454C54;
+}
+
+/* LOCATION & CONVERSION BUTTONS */
+
+.button-container {
+    padding: 10px 0 0 0;
+}
+
+#current-location-button {
+    font-size: 12px;
+    color: #8C8D91;
+    background-color: #ffffff;
+    border: solid 1px #ffffff;
+    border-radius: 3px;
+    transition: 300ms ease-in-out;
+    position: relative;
+    top: -2px;
+}
+
+#current-location-button:hover {
+    color: #454C54;
+    border: solid 1px #DFDFDF;
+    border-radius: 3px;
+}
+
+.unit-conversion-container {
+    color: #DFDFDF;
+    float: right;
+}
+
+#celsius-button,
+#fahrenheit-button {
+    font-size: 12px;
+    color: #8C8D91;
+    background-color: #ffffff;
+    border: solid 1px #ffffff;
+    border-radius: 3px;
+    transition: 300ms ease-in-out;
+    position: relative;
+    top: -2px;
+}
+
+#celsius-button:hover,
+#fahrenheit-button:hover {
+    color: #454C54;
+    border: solid 1px #DFDFDF;
+    border-radius: 3px;
+}
+
+/* FOOTER */
+
+.footer-container {
+    width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0 -20px 20px #ffffff;
+    display: block;
+    position: fixed;
+    bottom: 0;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+#page-author {
+    font-weight: 700;
+    font-style: italic;
+    color: #454C54;
+}
