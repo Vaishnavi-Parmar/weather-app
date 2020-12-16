@@ -179,29 +179,29 @@ hr {
     box-shadow: 0 0 20px #DFDFDF;
 }
 
-.forecast-day-one-day,
-.forecast-day-two-day,
-.forecast-day-three-day,
-.forecast-day-four-day,
-.forecast-day-five-day {
+.day-one,
+.day-two,
+.day-three,
+.day-four,
+.day-five {
     font-size: 12px;
     color: #8C8D91;
 }
 
-.forecast-day-one-emoji,
-.forecast-day-two-emoji,
-.forecast-day-three-emoji,
-.forecast-day-four-emoji,
-.forecast-day-five-emoji {
+.day-one-emoji,
+.day-two-emoji,
+.day-three-emoji,
+.day-four-emoji,
+.day-five-emoji {
     font-size: 32px;
     color:#8C8D91;
 }
 
-.forecast-day-one-temp,
-.forecast-day-two-temp,
-.forecast-day-three-temp,
-.forecast-day-four-temp,
-.forecast-day-five-temp {
+.day-one-temp,
+.day-two-temp,
+.day-three-temp,
+.day-four-temp,
+.day-five-temp {
     font-size: 12px;
     font-weight: 700;
     color: #454C54;
