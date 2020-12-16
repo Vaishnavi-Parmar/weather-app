@@ -160,7 +160,7 @@ hr {
     padding: 10px;
 }
 
-.five-day-forecast-container .panels {
+.panels {
     text-align: center;
     min-width: 70px;
     max-width: 100px;
@@ -173,7 +173,7 @@ hr {
     padding: 15px;
 }
 
-.five-day-forecast-container .panels:hover {
+.panels:hover {
     border: solid 1px #DFDFDF;
     border-radius: 5px;
     box-shadow: 0 0 20px #DFDFDF;
