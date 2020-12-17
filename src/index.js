@@ -36,14 +36,14 @@ currentClockTime();
 
 // weather for searched city // DONE
 
+let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
+
 function displaySearchedCityTemperature(response) {
     let searchedCityTemperature = Math.round(response.data.main.temp);
-    let tempValue = document.querySelector("#current-temp");
-    tempValue.innerHTML = `${searchedCityTemperature}`;
+    document.querySelector("#current-temp").innerHTML = `${searchedCityTemperature}`;
 }
 
 function getSearchedCityTemperature (searchedCity) {
-    let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displaySearchedCityTemperature);
 }
@@ -51,8 +51,7 @@ function getSearchedCityTemperature (searchedCity) {
 function displaySearchedCity(event) {
     event.preventDefault();
     let searchedCity = document.querySelector("#search-text-input").value;
-    let city = document.querySelector("#city");
-    city.innerHTML = `${searchedCity}`
+    document.querySelector("#city").innerHTML = `${searchedCity}`
     getSearchedCityTemperature(searchedCity);
 }
 
@@ -63,24 +62,20 @@ citySearch.addEventListener("click", displaySearchedCity);
 
 function displayCurrentCity(response) {
     let currentCityName = response.data.name;
-    let currentCity = document.querySelector("#city");
-    currentCity.innerHTML = `${currentCityName}`
+    document.querySelector("#city").innerHTML = `${currentCityName}`
 }
 
 function getCurrentCity(latitude, longitude) {
-    let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayCurrentCity);
 }
 
 function displayCurrentTemperature(response) {
     let currentTemperature = Math.round(response.data.main.temp);
-    let tempValue = document.querySelector("#current-temp");
-    tempValue.innerHTML = `${currentTemperature}`;
+    document.querySelector("#current-temp").innerHTML = `${currentTemperature}`;
 }
 
 function getCurrentTemperature(latitude, longitude) {
-    let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric`;
     axios.get(`${apiUrl}&appid=${apiKey}`).then(displayCurrentTemperature);
 }
