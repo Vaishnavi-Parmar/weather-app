@@ -131,7 +131,7 @@ function getCurrentTemperature(latitude, longitude) {
     axios.get(apiUrl).then(displayCurrentTemperature);
 }
 
-function logPosition(position) {
+function getLatitudeAndLongitude(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
     getCurrentTemperature(latitude, longitude);
@@ -139,7 +139,7 @@ function logPosition(position) {
 }
 
 function findCurrentLocation() {
-    navigator.geolocation.getCurrentPosition(logPosition);
+    navigator.geolocation.getCurrentPosition(getLatitudeAndLongitude);
 }
 
 let currentLocationButton = document.querySelector("#current-location-button");
