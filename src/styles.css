@@ -87,11 +87,11 @@ hr {
     font-weight: 500;
     color: #454C54;
     position: relative;
-    left: 60px;
+    left: 40px;
 }
 
 #current-emoji {
-    color: #8C8D91;
+    margin: -5px;
 }
 
 #temp-units {
