@@ -57,8 +57,8 @@ function displayVisibility(response) {
     }
 }
 
-function getVisibility(searchedCity) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+function getVisibility(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayVisibility);
 }
 
@@ -68,8 +68,8 @@ function displayHumidity(response) {
     document.querySelector("#humidity").innerHTML = `${humidity}%`;
 }
 
-function getHumidity(searchedCity) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+function getHumidity(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayHumidity);
 }
 
@@ -79,63 +79,57 @@ function displayWindSpeed(response) {
     document.querySelector("#wind-speed").innerHTML = `${windSpeed} m/s`;
 }
 
-function getWindSpeed(searchedCity) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+function getWindSpeed(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayWindSpeed);
 }
 
 // weather for searched city // DONE
 
-function displaySearchedCityTemperature(response) {
-    let searchedCityTemperature = Math.round(response.data.main.temp);
-    document.querySelector("#current-temp").innerHTML = `${searchedCityTemperature}`;
+function displayTemperature(response) {
+    let temperature = Math.round(response.data.main.temp);
+    document.querySelector("#current-temp").innerHTML = `${temperature}`;
 }
 
-function getSearchedCityTemperature (searchedCity) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displaySearchedCityTemperature);
+function getTemperature (city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayTemperature);
 }
 
-function displaySearchedCity(event) {
+function displayCity(event) {
     event.preventDefault();
-    let searchedCity = document.querySelector("#search-text-input").value;
-    document.querySelector("#city").innerHTML = `${searchedCity}`
-    getSearchedCityTemperature(searchedCity);
-    getVisibility(searchedCity);
-    getHumidity(searchedCity);
-    getWindSpeed(searchedCity);
+    let city = document.querySelector("#search-text-input").value;
+    document.querySelector("#city").innerHTML = `${city}`
+    getTemperature(city);
+    getVisibility(city);
+    getHumidity(city);
+    getWindSpeed(city);
 }
 
 let citySearch = document.querySelector("#button-addon2");
-citySearch.addEventListener("click", displaySearchedCity);
+citySearch.addEventListener("click", displayCity);
 
 // weather for current city // DONE
 
-function displayCurrentCity(response) {
-    let currentCityName = response.data.name;
-    document.querySelector("#city").innerHTML = `${currentCityName}`
+function displayCurrentCity(city) {
+    document.querySelector("#city").innerHTML = `${city}`
 }
 
-function getCurrentCity(latitude, longitude) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+function getCurrentLocationName(latitude, longitude) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
     axios.get(apiUrl).then(displayCurrentCity);
-}
-
-function displayCurrentTemperature(response) {
-    let currentTemperature = Math.round(response.data.main.temp);
-    document.querySelector("#current-temp").innerHTML = `${currentTemperature}`;
-}
-
-function getCurrentTemperature(latitude, longitude) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(displayCurrentTemperature);
+    let city = (response.data.name);
+    displayCurrentCity(city);
+    getTemperature(city);
+    getVisibility(city);
+    getHumidity(city);
+    getWindSpeed(city);
 }
 
 function getLatitudeAndLongitude(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    getCurrentTemperature(latitude, longitude);
-    getCurrentCity(latitude, longitude);
+    getCurrentLocationName(latitude, longitude);
 }
 
 function findCurrentLocation() {
