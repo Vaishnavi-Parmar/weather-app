@@ -113,10 +113,10 @@ celsiusToFahrenheitConversion.addEventListener("click", convertToFahrenheit);
 // currrent weather conditions // IN PROGRESS
 
 let visibility = document.querySelector("#visibility");
-visibility.innerHTML = ``;
+visibility.innerHTML = `test value`;
 
 let humidity = document.querySelector("#humidity");
-humidity.innerHTML = ``;
+humidity.innerHTML = `test value`;
 
 let windSpeed = document.querySelector("#wind-speed");
-windSpeed.innerHTML = ``;
+windSpeed.innerHTML = `test value`;
