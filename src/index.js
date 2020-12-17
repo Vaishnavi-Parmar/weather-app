@@ -39,7 +39,7 @@ currentClockTime();
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
 function displayVisibility(response) {
-    let visibility = Math.round(response.data.main.visibility);
+    let visibility = Math.round(response.data.visibility);
     document.querySelector("#visibility").innerHTML = `${visibility}`;
 }
 
@@ -61,7 +61,7 @@ function getHumidity(searchedCity) {
 
 
 function displayWindSpeed(response) {
-    let windSpeed = Math.round(response.data.main.wind.speed);
+    let windSpeed = Math.round(response.data.wind.speed);
     document.querySelector("#wind-speed").innerHTML = `${windSpeed} m/s`;
 }
 
