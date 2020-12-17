@@ -40,7 +40,21 @@ let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
 function displayVisibility(response) {
     let visibility = Math.round(response.data.visibility);
-    document.querySelector("#visibility").innerHTML = `${visibility}`;
+    if (visibility === 10000) {
+        document.querySelector("#visibility").innerHTML = `Very good`;
+    }
+    if (visibility < 10000 && visibility >= 7500) {
+        document.querySelector("#visibility").innerHTML = `Good`;        
+    }
+    if (visibility < 7500 && visibility >= 5000) {
+        document.querySelector("#visibility").innerHTML = `Ok`;        
+    }
+    if (visibility < 5000 && visibility >= 2500) {
+        document.querySelector("#visibility").innerHTML = `Poor`;        
+    }
+    if (visibility < 2500 && visibility >= 0) {
+        document.querySelector("#visibility").innerHTML = `Very poor`;        
+    }
 }
 
 function getVisibility(searchedCity) {
