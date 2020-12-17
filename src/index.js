@@ -114,3 +114,14 @@ function convertToFahrenheit(event) {
 
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
 celsiusToFahrenheitConversion.addEventListener("click", convertToFahrenheit);
+
+// currrent weather conditions // IN PROGRESS
+
+let visibility = document.querySelector("#visibility");
+visibility.innerHTML = ``;
+
+let humidity = document.querySelector("#humidity");
+humidity.innerHTML = ``;
+
+let windSpeed = document.querySelector("#wind-speed");
+windSpeed.innerHTML = ``;
