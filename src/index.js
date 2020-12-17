@@ -34,9 +34,43 @@ function currentClockTime() {
 currentDay();
 currentClockTime();
 
-// weather for searched city // DONE
+// currrent weather conditions // IN PROGRESS
 
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
+
+function displayVisibility(response) {
+    let visibility = Math.round(response.data.main.visibility);
+    document.querySelector("#visibility").innerHTML = `${visibility}`;
+}
+
+function getVisibility(searchedCity) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayVisibility);
+}
+
+
+function displayHumidity(response) {
+    let humidity = Math.round(response.data.main.humidity);
+    document.querySelector("#humidity").innerHTML = `${humidity}%`;
+}
+
+function getHumidity(searchedCity) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayHumidity);
+}
+
+
+function displayWindSpeed(response) {
+    let windSpeed = Math.round(response.data.main.wind.speed);
+    document.querySelector("#wind-speed").innerHTML = `${windSpeed} m/s`;
+}
+
+function getWindSpeed(searchedCity) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchedCity}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWindSpeed);
+}
+
+// weather for searched city // DONE
 
 function displaySearchedCityTemperature(response) {
     let searchedCityTemperature = Math.round(response.data.main.temp);
@@ -53,6 +87,9 @@ function displaySearchedCity(event) {
     let searchedCity = document.querySelector("#search-text-input").value;
     document.querySelector("#city").innerHTML = `${searchedCity}`
     getSearchedCityTemperature(searchedCity);
+    getVisibility(searchedCity);
+    getHumidity(searchedCity);
+    getWindSpeed(searchedCity);
 }
 
 let citySearch = document.querySelector("#button-addon2");
@@ -76,8 +113,8 @@ function displayCurrentTemperature(response) {
 }
 
 function getCurrentTemperature(latitude, longitude) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric`;
-    axios.get(`${apiUrl}&appid=${apiKey}`).then(displayCurrentTemperature);
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayCurrentTemperature);
 }
 
 function logPosition(position) {
@@ -109,14 +146,3 @@ function convertToFahrenheit(event) {
 
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
 celsiusToFahrenheitConversion.addEventListener("click", convertToFahrenheit);
-
-// currrent weather conditions // IN PROGRESS
-
-let visibility = document.querySelector("#visibility");
-visibility.innerHTML = `test value`;
-
-let humidity = document.querySelector("#humidity");
-humidity.innerHTML = `test value`;
-
-let windSpeed = document.querySelector("#wind-speed");
-windSpeed.innerHTML = `test value`;
