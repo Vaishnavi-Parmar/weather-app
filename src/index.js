@@ -34,7 +34,51 @@ function currentClockTime() {
 currentDay();
 currentClockTime();
 
-// currrent weather conditions // IN PROGRESS
+// current weather emoji // IN PROGRESS
+
+function displayEmoji(response) {
+    let conditionId = (response.id);
+    if (conditionId === "Thunderstorm") {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/11d@2x.png" alt="Thunderstorm">`;
+    }
+    if (conditionId === "Drizzle") {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/09d@2x.png" alt="Drizzle">`;
+    }
+    if (conditionId >= 500 && conditionId <= 504) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Rain">`;
+    }
+    if (conditionId = 511) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/13d@2x.png" alt="Rain">`;
+    }
+    if (conditionId >= 520 && conditionId <= 531) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/09d@2x.png" alt="Rain">`;
+    }
+    if (conditionId >= 600 && conditionId <= 622) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/13d@2x.png" alt="Snow">`;
+    }
+    if (conditionId >= 701 && condition <= 781) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/50d@2x.png" alt="Mist/Fog">`;
+    }
+    if (conditionId === 800) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/01d@2x.png" alt="Clear">`;
+    }
+    if (conditionId === 801) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/02d@2x.png" alt="Clouds">`;
+    }
+    if (conditionId === 802) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/03d@2x.png" alt="Clouds">`;
+    }    
+    if (conditionId === 803 || conditionId === 804) {
+        document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/04d@2x.png" alt="Clouds">`;
+    }
+}
+
+function getWeatherCondition(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayEmoji);
+}
+
+// currrent weather conditions
 
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
@@ -123,6 +167,7 @@ function getCurrentLocationName(response) {
     getVisibility(city);
     getHumidity(city);
     getWindSpeed(city);
+    getWeatherCondition(city);
 }
 
 function getLatitudeAndLongitude(position) {
