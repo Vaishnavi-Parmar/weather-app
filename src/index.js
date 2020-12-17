@@ -37,7 +37,8 @@ currentClockTime();
 // current weather emoji // IN PROGRESS
 
 function displayEmoji(response) {
-    let conditionId = (response.id);
+    console.log(response);
+    let conditionId = (response.data.weather[0].id);
     if (conditionId === "Thunderstorm") {
         document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/11d@2x.png" alt="Thunderstorm">`;
     }
@@ -47,7 +48,7 @@ function displayEmoji(response) {
     if (conditionId >= 500 && conditionId <= 504) {
         document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/10d@2x.png" alt="Rain">`;
     }
-    if (conditionId = 511) {
+    if (conditionId === 511) {
         document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/13d@2x.png" alt="Rain">`;
     }
     if (conditionId >= 520 && conditionId <= 531) {
@@ -56,7 +57,7 @@ function displayEmoji(response) {
     if (conditionId >= 600 && conditionId <= 622) {
         document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/13d@2x.png" alt="Snow">`;
     }
-    if (conditionId >= 701 && condition <= 781) {
+    if (conditionId >= 701 && conditionId <= 781) {
         document.querySelector("#current-emoji").innerHTML = `<img src="http://openweathermap.org/img/wn/50d@2x.png" alt="Mist/Fog">`;
     }
     if (conditionId === 800) {
@@ -148,6 +149,7 @@ function displayCity(event) {
     getVisibility(city);
     getHumidity(city);
     getWindSpeed(city);
+    getWeatherCondition(city)
 }
 
 let citySearch = document.querySelector("#button-addon2");
@@ -161,7 +163,6 @@ function displayCurrentCity(city) {
 
 function getCurrentLocationName(response) {
     let city = (response.data.name);
-    console.log(city);
     displayCurrentCity(city);
     getTemperature(city);
     getVisibility(city);
