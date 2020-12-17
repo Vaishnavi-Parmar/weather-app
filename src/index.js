@@ -115,10 +115,9 @@ function displayCurrentCity(city) {
     document.querySelector("#city").innerHTML = `${city}`
 }
 
-function getCurrentLocationName(latitude, longitude) {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
-    axios.get(apiUrl).then(displayCurrentCity);
+function getCurrentLocationName(response) {
     let city = (response.data.name);
+    console.log(city);
     displayCurrentCity(city);
     getTemperature(city);
     getVisibility(city);
@@ -129,7 +128,8 @@ function getCurrentLocationName(latitude, longitude) {
 function getLatitudeAndLongitude(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    getCurrentLocationName(latitude, longitude);
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(getCurrentLocationName);
 }
 
 function findCurrentLocation() {
