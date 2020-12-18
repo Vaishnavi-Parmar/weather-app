@@ -26,13 +26,19 @@
                         Weather
                     </h1>
                 </div>
-                <div class="col-6">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="search-text-input" placeholder="Search for a city">
-                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+                <div class="col-9">
+                    <div class="input-group" id="search-bar">
+                        <span id="search-text-input">
+                            <input type="text" class="form-control" placeholder="Search for a city">
+                        </span>
+                        <span id="search-button">
+                            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
+                        </span>
+                        <span id="current-location-button">
+                            <button class="btn btn-outline-secondary" type="button"><i class="fas fa-map-marker-alt"></i></button>
+                        </span>
                     </div>
                 </div>
-
             </div>
 
         </header>
@@ -57,32 +63,6 @@
                 </div>
 
                 <div class="col-9">
-                    <div class="row button-container">
-                        <div class="col-6">
-                            <span>
-                                <button id="current-location-button">
-                                    weather for current location
-                                </button>
-                            </span>
-                        </div>
-                        <div class="col-6">
-                            <div class="unit-conversion-container">
-                                <span class="unit-conversion">
-                                    <button id="celsius-button">
-                                        °c
-                                    </button>
-                                </span>
-                                <span class="unit-conversion">
-                                    |
-                                </span>
-                                <span class="unit-conversion">
-                                    <button id="fahrenheit-button">
-                                        °f
-                                    </button>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-body">
 
@@ -290,6 +270,26 @@
 
                         </div>
 
+                    </div>
+
+                    <div class="row button-container">
+                        <div class="col-12">
+                            <div class="unit-conversion-container">
+                                <span class="unit-conversion">
+                                    <button id="celsius-button">
+                                        °c
+                                    </button>
+                                </span>
+                                <span class="unit-conversion">
+                                    |
+                                </span>
+                                <span class="unit-conversion">
+                                    <button id="fahrenheit-button">
+                                        °f
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

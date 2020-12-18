@@ -20,13 +20,14 @@ h1 {
     margin: 0;
     padding: 6px 0;
     position: relative;
-    top: 5px;
+    top: 3px;
 }
 
 h2 {
     font-size: 28px;
     color: #454C54;
-    padding: 36px 0 0 0;
+    margin: 0;
+    padding: 42px 0 3px 0;
 }
 
 h3 {
@@ -57,12 +58,12 @@ input {
 
 table {
     position: relative;
-    top: 10px;
+    top: 17px;
     left: -5px;
 }
 
 hr {
-    margin: 15px -8px;
+    margin: 0 -8px 20px;
 }
 
 .container {
@@ -101,14 +102,11 @@ hr {
     top: -29px;
 }
 
-.table-sm {
-    margin: 0;
-}
-
 .conditions,
 .values {
     font-size: 12px;
     color: #454C54;
+    line-height: 10px;
 }
 
 .conditions {
@@ -211,21 +209,25 @@ hr {
     padding: 10px 0 0 0;
 }
 
-#current-location-button {
-    font-size: 12px;
-    color: #8C8D91;
-    background-color: #ffffff;
-    border: solid 1px #ffffff;
-    border-radius: 3px;
-    transition: 300ms ease-in-out;
-    position: relative;
-    top: -2px;
+#search-bar {
+    display: flex;
+    flex-direction: row;
 }
 
-#current-location-button:hover {
-    color: #454C54;
-    border: solid 1px #DFDFDF;
-    border-radius: 3px;
+#search-text-input {
+    flex-grow: 1;
+}
+
+#search-button {
+    max-width: 42px;
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+#current-location-button {
+    max-width: 38px;
+    flex-grow: 1;
+    margin-left: 25px;
 }
 
 .unit-conversion-container {

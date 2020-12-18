@@ -37,7 +37,6 @@ currentClockTime();
 // current weather emoji // IN PROGRESS
 
 function displayEmoji(response) {
-    console.log(response);
     let conditionIcon = (response.data.weather[0].icon);
     let conditionDecscription = (response.data.weather[0].description);
     document.querySelector("#current-emoji").innerHTML = `<img src="https://openweathermap.org/img/wn/${conditionIcon}@2x.png" alt="${conditionDecscription}">`;
@@ -112,7 +111,7 @@ function getTemperature (city) {
 
 function displayCity(event) {
     event.preventDefault();
-    let city = document.querySelector("#search-text-input").value;
+    let city = document.querySelector(".form-control").value;
     document.querySelector("#city").innerHTML = `${city}`
     getTemperature(city);
     getVisibility(city);
@@ -121,7 +120,7 @@ function displayCity(event) {
     getWeatherCondition(city)
 }
 
-let citySearch = document.querySelector("#button-addon2");
+let citySearch = document.querySelector("#search-button");
 citySearch.addEventListener("click", displayCity);
 
 // weather for current city // DONE
