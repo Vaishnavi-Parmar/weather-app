@@ -36,6 +36,8 @@ currentClockTime();
 
 // current weather emoji // IN PROGRESS
 
+let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
+
 function displayEmoji(response) {
     let conditionIcon = (response.data.weather[0].icon);
     let conditionDecscription = (response.data.weather[0].description);
@@ -48,8 +50,6 @@ function getWeatherCondition(city) {
 }
 
 // currrent weather conditions
-
-let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
 function displayVisibility(response) {
     let visibility = Math.round(response.data.visibility);
@@ -168,3 +168,5 @@ function convertToFahrenheit(event) {
 
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
 celsiusToFahrenheitConversion.addEventListener("click", convertToFahrenheit);
+
+// 5 day forecast, look into -> https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=e34fefde45cfc920d23b842e21f42ce4&units=metric // IN PROGRESS
