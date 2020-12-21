@@ -155,18 +155,17 @@ currentLocationButton.addEventListener("click", findCurrentLocation);
 
 // temperature unit conversion // NEEDS FIXING
 
-function convertToFahrenheit(event) {
+function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let tempValue = document.querySelector("#current-temp");
-  let tempValueUnit = document.querySelector("#temp-units");
-  let tempC = document.querySelector("#current-temp");
-  let tempF = (tempC * 9) / 5 + 32;
-  tempF = Math.round(tempF);
-  tempValue = tempValue.innerHTML = `${tempF}`;
-  tempValueUnit = tempValueUnit.innerHTML = `°f`;
+  let temperature = document.querySelector("#current-temp");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperature.innerHTML = Math.round(fahrenheitTemperature);
+  document.querySelector("#temp-units").innerHTML = `°f`;
 }
 
+let celsiusTemperature = null;
+
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
-celsiusToFahrenheitConversion.addEventListener("click", convertToFahrenheit);
+celsiusToFahrenheitConversion.addEventListener("click", displayFahrenheitTemperature);
 
 // 5 day forecast, look into -> https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=e34fefde45cfc920d23b842e21f42ce4&units=metric // IN PROGRESS
