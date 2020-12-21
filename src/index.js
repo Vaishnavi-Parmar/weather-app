@@ -117,7 +117,7 @@ function displayCity(event) {
     getVisibility(city);
     getHumidity(city);
     getWindSpeed(city);
-    getWeatherCondition(city)
+    getWeatherCondition(city);
 }
 
 let citySearch = document.querySelector("#search-button");
@@ -153,19 +153,16 @@ function findCurrentLocation() {
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", findCurrentLocation);
 
-// temperature unit conversion // NEEDS FIXING
+// temperature unit conversion // IN PROGRESS
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
-  let temperature = document.querySelector("#current-temp");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperature.innerHTML = Math.round(fahrenheitTemperature);
+  let temperatureElement = document.querySelector("#current-temp");
+  console.log(temperatureElement);
+  let fahrenheitTemperature = (temperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
   document.querySelector("#temp-units").innerHTML = `°f`;
 }
 
-let celsiusTemperature = null;
-
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
 celsiusToFahrenheitConversion.addEventListener("click", displayFahrenheitTemperature);
-
-// 5 day forecast, look into -> https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=e34fefde45cfc920d23b842e21f42ce4&units=metric // IN PROGRESS
