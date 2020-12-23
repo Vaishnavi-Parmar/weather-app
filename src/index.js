@@ -38,6 +38,16 @@ currentClockTime();
 
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
+function displayWeatherDescription(response) {
+    let weatherDecscription = (response.data.weather[0].description);
+    document.querySelector("#weather-description").innerHTML = `${weatherDecscription}`;
+}
+
+function getWeatherDescription(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayWeatherDescription);
+}
+
 function displayEmoji(response) {
     let conditionIcon = (response.data.weather[0].icon);
     let conditionDecscription = (response.data.weather[0].description);
@@ -120,6 +130,7 @@ function displayCity(response) {
     getHumidity(city);
     getWindSpeed(city);
     getWeatherCondition(city);
+    getWeatherDescription(city);
 }
 
 function search(city) {
