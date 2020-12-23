@@ -143,6 +143,14 @@ function displayFahrenheitTemperature(event) {
     temperatureUnits.innerHTML = `°f`;
 }
 
+function displayCelsiusTemperature(event) {
+    event.preventDefault();
+    let currentTemperature = document.querySelector("#current-temp");
+    currentTemperature.innerHTML = Math.round(celsiusTemperature);
+    let temperatureUnits = document.querySelector("#temp-units");
+    temperatureUnits.innerHTML = `°c`;
+}
+
 let celsiusTemperature = null;
 
 let citySearch = document.querySelector("#search-button");
@@ -150,6 +158,9 @@ citySearch.addEventListener("click", handleSearch);
 
 let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
 celsiusToFahrenheitConversion.addEventListener("click", displayFahrenheitTemperature);
+
+let fahrenheitToCelsiusConversion = document.querySelector("#celsius-button");
+fahrenheitToCelsiusConversion.addEventListener("click", displayCelsiusTemperature);
 
 search("London");
 
