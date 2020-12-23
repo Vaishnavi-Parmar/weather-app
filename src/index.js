@@ -103,6 +103,8 @@ function displayTemperature(response) {
     celsiusTemperature = response.data.main.temp;
     let temperature = Math.round(celsiusTemperature);
     document.querySelector("#current-temp").innerHTML = `${temperature}`;
+    let temperatureUnits = document.querySelector("#temp-units");
+    temperatureUnits.innerHTML = `°c`;
 }
 
 function getTemperature(city) {
