@@ -58,7 +58,7 @@ input {
 
 table {
     position: relative;
-    top: 17px;
+    top: 20px;
     left: -5px;
 }
 
@@ -75,12 +75,17 @@ hr {
 
 /* CURRENT WEATHER */
 
+#current-day, 
+#current-time {
+    font-size: 12px;
+}
+
 #current-day {
     font-weight: 400;
 }
 
 .current-weather {
-    font-size: 60px;
+    font-size: 65px;
     font-weight: 500;
     color: #454C54;
     position: relative;
@@ -99,7 +104,7 @@ hr {
     color: #8C8D91;
     position: relative;
     left: -8px;
-    top: -29px;
+    top: -30px;
 }
 
 .conditions,
@@ -120,7 +125,7 @@ hr {
 #weather-description-container {
     text-align: center;
     margin-top: -10px;
-    padding-bottom: 20px;
+    padding-bottom: 25px;
 
 }
 
@@ -166,7 +171,7 @@ hr {
     display: flex;
     flex-direction: row;
     margin: 0 auto;
-    padding: 10px;
+    padding: 15px 10px 10px 10px;
 }
 
 .panels {
