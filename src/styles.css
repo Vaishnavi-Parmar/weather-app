@@ -117,6 +117,19 @@ hr {
     font-weight: 600;
 }
 
+#weather-description-container {
+    text-align: center;
+    margin-top: -10px;
+    padding-bottom: 20px;
+
+}
+
+#weather-description {
+    font-size: 12px;
+    font-style: italic;
+    color: #8C8D91;
+}
+
 /* CURRENT DAY FORECAST */
 
 .current-day-forecast-container {
