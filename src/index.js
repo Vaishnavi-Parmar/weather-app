@@ -100,19 +100,19 @@ function getWindSpeed(city) {
 // weather for searched city // DONE
 
 function displayTemperature(response) {
-    let temperature = Math.round(response.data.main.temp);
+    celsiusTemperature = response.data.main.temp;
+    let temperature = Math.round(celsiusTemperature);
     document.querySelector("#current-temp").innerHTML = `${temperature}`;
 }
 
-function getTemperature (city) {
+function getTemperature(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayTemperature);
 }
 
-function displayCity(event) {
-    event.preventDefault();
-    let city = document.querySelector(".form-control").value;
-    document.querySelector("#city").innerHTML = `${city}`
+function displayCity(response) {
+    let city = response.data.name;
+    document.querySelector("#city").innerHTML = `${city}`;
     getTemperature(city);
     getVisibility(city);
     getHumidity(city);
@@ -120,8 +120,38 @@ function displayCity(event) {
     getWeatherCondition(city);
 }
 
+function search(city) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(displayCity);
+}
+
+function handleSearch(event) {
+    event.preventDefault();
+    let city = document.querySelector(".form-control").value;
+    document.querySelector("#city").innerHTML = `${city}`
+    search(city);
+}
+
+// temperature unit conversion // IN PROGRESS
+
+function displayFahrenheitTemperature(event) {
+    event.preventDefault();
+    let currentTemperature = document.querySelector("#current-temp");
+    let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+    currentTemperature.innerHTML = Math.round(fahrenheitTemperature);
+    let temperatureUnits = document.querySelector("#temp-units");
+    temperatureUnits.innerHTML = `°f`;
+}
+
+let celsiusTemperature = null;
+
 let citySearch = document.querySelector("#search-button");
-citySearch.addEventListener("click", displayCity);
+citySearch.addEventListener("click", handleSearch);
+
+let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
+celsiusToFahrenheitConversion.addEventListener("click", displayFahrenheitTemperature);
+
+search("London");
 
 // weather for current city // DONE
 
@@ -152,17 +182,3 @@ function findCurrentLocation() {
 
 let currentLocationButton = document.querySelector("#current-location-button");
 currentLocationButton.addEventListener("click", findCurrentLocation);
-
-// temperature unit conversion // IN PROGRESS
-
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureElement = document.querySelector("#current-temp");
-  console.log(temperatureElement);
-  let fahrenheitTemperature = (temperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-  document.querySelector("#temp-units").innerHTML = `°f`;
-}
-
-let celsiusToFahrenheitConversion = document.querySelector("#fahrenheit-button");
-celsiusToFahrenheitConversion.addEventListener("click", displayFahrenheitTemperature);
