@@ -62,10 +62,6 @@ table {
     left: -5px;
 }
 
-hr {
-    margin: 0 -8px 20px;
-}
-
 .container {
     min-width: 700px;
     width: 90%;
@@ -125,8 +121,7 @@ hr {
 #weather-description-container {
     text-align: center;
     margin-top: -10px;
-    padding-bottom: 25px;
-
+    padding-bottom: 10px;
 }
 
 #weather-description {
