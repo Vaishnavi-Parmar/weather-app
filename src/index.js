@@ -141,7 +141,7 @@ function testDays(dayNumber) {
     return `${forecastDay[weekday]}`;
 }
 
-function displayForecast(response) {
+function displayFiveDayForecast(response) {
     let forecast = document.querySelector(".five-day-forecast-container");
     forecast.innerHTML = null;
     let forecastArray = null;
@@ -172,9 +172,9 @@ function displayForecast(response) {
     }
 }
 
-function getForecast(latitude, longitude) {
+function getFiveDayForecast(latitude, longitude) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
-    axios.get(apiUrl).then(displayForecast);
+    axios.get(apiUrl).then(displayFiveDayForecast);
 }
 
 function testLog(response) {
@@ -200,7 +200,7 @@ function displayCity(response) {
     document.querySelector("#city").innerHTML = `${city}`;
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
-    getForecast(latitude, longitude);
+    getFiveDayForecast(latitude, longitude);
     getTemperature(city);
     getVisibility(city);
     getHumidity(city);
