@@ -189,7 +189,8 @@ table {
     box-shadow: 0 0 20px #DFDFDF;
 }
 
-.day-one,
+.day-one-temp,
+#day-one,
 .day-two,
 .day-three,
 .day-four,
@@ -198,7 +199,7 @@ table {
     color: #8C8D91;
 }
 
-.day-one-emoji,
+#day-one-emoji,
 .day-two-emoji,
 .day-three-emoji,
 .day-four-emoji,
@@ -207,7 +208,8 @@ table {
     color:#8C8D91;
 }
 
-.day-one-temp,
+#day-one-min-temp,
+#day-one-max-temp,
 .day-two-temp,
 .day-three-temp,
 .day-four-temp,
