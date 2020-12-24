@@ -104,7 +104,7 @@ function getWindSpeed(city) {
     axios.get(apiUrl).then(displayWindSpeed);
 }
 
-// Temperature for searched city
+// Current temperature
 function displayTemperature(response) {
     celsiusTemperature = response.data.main.temp;
     let temperature = Math.round(celsiusTemperature);
@@ -119,6 +119,19 @@ function getTemperature(city) {
 }
 
 // Current Day Forecast // --NEEDS FIXING--
+function getHourlyTime(hourDt) {
+    let hours = new Date(hourDt * 1000).getHours();
+    if (hours < 10) {
+        hours = `0${hours}`;
+    }
+    let minutes = new Date(hourDt * 1000).getMinutes();
+    if (minutes < 10) {
+        minutes = `0${minutes}`;
+    }
+    
+    return `${hours}:${minutes}`;
+}
+
 function displayCurrentDayForecast(response) {
     let forecast = document.querySelector(".current-day-forecast-container");
     forecast.innerHTML = null;
@@ -126,13 +139,16 @@ function displayCurrentDayForecast(response) {
 
             console.log(response);
 
-    for (let index = 0; index < 7; index++) {
+    for (let index = 1; index < 8; index++) {
         forecastArray = response.data.hourly[index];
+        hourDt = forecastArray.dt;
         forecast.innerHTML += `
         <div class="day-forecast-by-hour-container">
-            <i class="fas fa-circle"></i>
+            <span id="current-day-forecast-hours">
+                ${getHourlyTime(hourDt)}
+            </span>
             <div class="day-forecast-temperature">
-                ${Math.round(forecastArray.temp)}
+                ${Math.round(forecastArray.temp)}°
             </div>
             <div>
                 <img src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
@@ -147,7 +163,7 @@ function getCurrentDayForecast(latitude, longitude) {
 }
 
 // Five Day Forecast
-function weekdays(dayNumber) {
+function getWeekdays(dayNumber) {
     let weekday = new Date(dayNumber * 1000).getDay();
 
     let forecastDay = [
@@ -174,7 +190,7 @@ function displayFiveDayForecast(response) {
         forecast.innerHTML += `
         <ul class="panels">
             <li id="forecast-day">
-                ${weekdays(dayNumber)}
+                ${getWeekdays(dayNumber)}
             </li>
             <li>
                 <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>

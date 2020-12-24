@@ -145,7 +145,7 @@ a:hover {
 .current-day-forecast-container {
     display: flex;
     flex-direction: row;
-    padding: 30px 15px 10px 15px;
+    padding: 10px 0 10px 0px;
 }
 
 .day-forecast-by-hour-container {
@@ -153,13 +153,13 @@ a:hover {
     flex-grow: 1;
 }
 
-.fa-circle {
-    font-size: 8px;
-    color: #454C54;
+#current-day-forecast-hours {
+    font-size: 12px;
+    color: #8C8D91;
 }
 
 .day-forecast-temperature {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
     color: #454C54;
 }
@@ -190,7 +190,7 @@ a:hover {
     margin-left: 8px;
     margin-right: 8px;
     margin-bottom: 5px;
-    padding: 15px;
+    padding: 12px 15px;
 }
 
 .panels:hover {
@@ -206,10 +206,10 @@ a:hover {
 }
 
 #forecast-emoji {
-    width: 60px;
+    width: 50px;
     margin: -10px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #forecast-min-temp,
