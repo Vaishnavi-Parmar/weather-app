@@ -1,5 +1,4 @@
-// curernt local time & date
-
+// Current local time & date
 let now = new Date();
 
 function currentDay() {
@@ -34,8 +33,7 @@ function currentClockTime() {
 currentDay();
 currentClockTime();
 
-// current weather emoji // IN PROGRESS
-
+// Current weather emoji
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
 
 function displayWeatherDescription(response) {
@@ -59,8 +57,7 @@ function getWeatherCondition(city) {
     axios.get(apiUrl).then(displayEmoji);
 }
 
-// currrent weather conditions
-
+// Currrent weather conditions
 function displayVisibility(response) {
     let visibility = Math.round(response.data.visibility);
     if (visibility === 10000) {
@@ -107,8 +104,7 @@ function getWindSpeed(city) {
     axios.get(apiUrl).then(displayWindSpeed);
 }
 
-// weather for searched city // DONE
-
+// Temperature for searched city
 function displayTemperature(response) {
     celsiusTemperature = response.data.main.temp;
     let temperature = Math.round(celsiusTemperature);
@@ -122,10 +118,37 @@ function getTemperature(city) {
     axios.get(apiUrl).then(displayTemperature);
 }
 
-// Forecast
-function testDays(dayNumber) {
+// Current Day Forecast // --NEEDS FIXING--
+function displayCurrentDayForecast(response) {
+    let forecast = document.querySelector(".current-day-forecast-container");
+    forecast.innerHTML = null;
+    let forecastArray = null;
+
+            console.log(response);
+
+    for (let index = 0; index < 7; index++) {
+        forecastArray = response.data.hourly[index];
+        forecast.innerHTML += `
+        <div class="day-forecast-by-hour-container">
+            <i class="fas fa-circle"></i>
+            <div class="day-forecast-temperature">
+                ${Math.round(forecastArray.temp)}
+            </div>
+            <div>
+                <img src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
+            </div>
+        </div>`;
+    }
+}
+
+function getCurrentDayForecast(latitude, longitude) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(displayCurrentDayForecast);
+}
+
+// Five Day Forecast
+function weekdays(dayNumber) {
     let weekday = new Date(dayNumber * 1000).getDay();
-    console.log(weekday);
 
     let forecastDay = [
         "Sun",
@@ -137,7 +160,6 @@ function testDays(dayNumber) {
         "Sat",
         "Sun"
     ];
-    console.log(forecastDay[weekday]);
     return `${forecastDay[weekday]}`;
 }
 
@@ -152,7 +174,7 @@ function displayFiveDayForecast(response) {
         forecast.innerHTML += `
         <ul class="panels">
             <li id="forecast-day">
-                ${testDays(dayNumber)}
+                ${weekdays(dayNumber)}
             </li>
             <li>
                 <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
@@ -177,29 +199,19 @@ function getFiveDayForecast(latitude, longitude) {
     axios.get(apiUrl).then(displayFiveDayForecast);
 }
 
-function testLog(response) {
-    console.log(response.data);
-}
-
-function testApi() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&appid=${apiKey}&units=metric`
-    axios.get(apiUrl).then(testLog);
-}
-
-testApi();
-
+// City search
 function search(city) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayCity);
 }
 
-//
-
+// Handle search
 function displayCity(response) {
     let city = response.data.name;
     document.querySelector("#city").innerHTML = `${city}`;
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
+    getCurrentDayForecast(latitude, longitude);
     getFiveDayForecast(latitude, longitude);
     getTemperature(city);
     getVisibility(city);
@@ -216,8 +228,7 @@ function handleSearch(event) {
     search(city);
 }
 
-// temperature unit conversion // IN PROGRESS
-
+// Temperature unit conversion
 function displayFahrenheitTemperature(event) {
     event.preventDefault();
     let currentTemperature = document.querySelector("#current-temp");
@@ -248,8 +259,7 @@ fahrenheitToCelsiusConversion.addEventListener("click", displayCelsiusTemperatur
 
 search("London");
 
-// weather for current city // DONE
-
+// Weather for current city
 function displayCurrentCity(city) {
     document.querySelector("#city").innerHTML = `${city}`
 }
