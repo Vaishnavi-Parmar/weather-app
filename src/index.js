@@ -123,13 +123,52 @@ function getTemperature(city) {
 }
 
 // Forecast
+function testDays(dayNumber) {
+    let weekday = new Date(dayNumber * 1000).getDay();
+    console.log(weekday);
 
-function displayForecast(response) {
-    console.log(response.data.daily[1]);
+    let forecastDay = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+    ];
+    console.log(forecastDay[weekday]);
+    return `${forecastDay[weekday]}`;
 }
 
-function getForecast() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&appid=e34fefde45cfc920d23b842e21f42ce4&units=metric`
+function displayForecast(response) {
+    let forecastArray = response.data.daily[1]
+    console.log(forecastArray);
+
+    dayNumber = forecastArray.dt;
+
+    forecast.innerHTML = `
+    <li id="forecast-day">
+        ${testDays(dayNumber)}
+    </li>
+    <li>
+        <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
+    </li>
+    <li class="forecast-temp">
+        <span id="forecast-min-temp">
+            ${Math.round(forecastArray.temp.min)}
+        </span>
+        <span class="forecast-temp">
+            /
+        </span>
+        <span id="forecast-max-temp">
+            ${Math.round(forecastArray.temp.max)}
+        </span>
+    </li>`;
+}
+
+function getForecast(latitude, longitude) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
     axios.get(apiUrl).then(displayForecast);
 }
 
@@ -138,7 +177,7 @@ function testLog(response) {
 }
 
 function testApi() {
-    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&appid=e34fefde45cfc920d23b842e21f42ce4&units=metric`
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=30.489772&lon=-99.771335&appid=${apiKey}&units=metric`
     axios.get(apiUrl).then(testLog);
 }
 
@@ -154,8 +193,8 @@ function search(city) {
 function displayCity(response) {
     let city = response.data.name;
     document.querySelector("#city").innerHTML = `${city}`;
-    let latitude = response.data.latitude;
-    let longitude = response.data.longitude;
+    let latitude = response.data.coord.lat;
+    let longitude = response.data.coord.lon;
     getForecast(latitude, longitude);
     getTemperature(city);
     getVisibility(city);

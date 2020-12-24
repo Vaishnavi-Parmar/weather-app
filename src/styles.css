@@ -199,7 +199,13 @@ table {
     color: #8C8D91;
 }
 
-#forecast-emoji,
+#forecast-emoji {
+    width: 75px;
+    margin: -20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 .day-two-emoji,
 .day-three-emoji,
 .day-four-emoji,
