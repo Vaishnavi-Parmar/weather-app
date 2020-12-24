@@ -143,54 +143,33 @@ function testDays(dayNumber) {
 
 function displayForecast(response) {
     let forecast = document.querySelector(".five-day-forecast-container");
-    let forecastArray = response.data.daily[1]
-    console.log(forecastArray);
-
-    dayNumber = forecastArray.dt;
-
-    forecast.innerHTML = `
-    <ul class="panels">
-        <li id="forecast-day">
-            ${testDays(dayNumber)}
-        </li>
-        <li>
-            <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
-        </li>
-        <li class="forecast-temp">
-            <span id="forecast-min-temp">
-                ${Math.round(forecastArray.temp.min)}
-            </span>
-            <span class="forecast-temp">
-                /
-            </span>
-            <span id="forecast-max-temp">
-                ${Math.round(forecastArray.temp.max)}
-            </span>
-        </li>
-    </ul>`;
-
-    forecastArray = response.data.daily[2];
-    dayNumber = forecastArray.dt;
-    forecast.innerHTML = forecast.innerHTML + `
-    <ul class="panels">
-        <li id="forecast-day">
-            ${testDays(dayNumber)}
-        </li>
-        <li>
-            <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
-        </li>
-        <li class="forecast-temp">
-            <span id="forecast-min-temp">
-                ${Math.round(forecastArray.temp.min)}
-            </span>
-            <span class="forecast-temp">
-                /
-            </span>
-            <span id="forecast-max-temp">
-                ${Math.round(forecastArray.temp.max)}
-            </span>
-        </li>
-    </ul>`;
+    forecast.innerHTML = null;
+    let forecastArray = null;
+    
+    for (let index = 1; index < 6; index++) {
+        forecastArray = response.data.daily[index];
+        dayNumber = forecastArray.dt;
+        forecast.innerHTML += `
+        <ul class="panels">
+            <li id="forecast-day">
+                ${testDays(dayNumber)}
+            </li>
+            <li>
+                <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
+            </li>
+            <li class="forecast-temp">
+                <span id="forecast-min-temp">
+                    ${Math.round(forecastArray.temp.min)}
+                </span>
+                <span class="forecast-temp">
+                    /
+                </span>
+                <span id="forecast-max-temp">
+                    ${Math.round(forecastArray.temp.max)}
+                </span>
+            </li>
+        </ul>`;
+    }
 }
 
 function getForecast(latitude, longitude) {
