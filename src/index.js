@@ -1,44 +1,21 @@
 // Current local time & date
-let now = new Date();
-
-function currentDay() {
-      let days = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
-    ];
-    let currentDay = days[now.getDay()];
-    let currentDayValue = document.querySelector("#current-day");
-    currentDayValue.innerHTML = `${currentDay}`;
-}
-
-function currentClockTime() {
-    let currentHours = now.getHours();
-    let currentMinutes = now.getMinutes();
-    let currentClockTimeValue = document.querySelector("#current-time");
-    if (currentHours.toString().length === 1) {
-      currentHours = "0" + currentHours;
-    }
-    if (currentMinutes.toString().length === 1) {
-      currentMinutes = "0" + currentMinutes;
-    }
-    currentClockTimeValue.innerHTML = `${currentHours}:${currentMinutes}`;
-}
-
-currentDay();
-currentClockTime();
-
-// Current weather emoji
 let apiKey = "e34fefde45cfc920d23b842e21f42ce4";
+
+// Current weather description
+function displayPrecipitationDescription(response) {
+    let precipitation = (response.data.minutely[0].precipitation);
+    let precipitationDescription = document.querySelector("#precipitation-description")
+    precipitationDescription.innerHTML = `precipitation: ${precipitation}mm`;
+}
+
+function getPrecipitation(latitude, longitude) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(displayPrecipitationDescription);
+}
 
 function displayWeatherDescription(response) {
     let weatherDecscription = (response.data.weather[0].description);
-    document.querySelector("#weather-description").innerHTML = `${weatherDecscription}`;
+    document.querySelector("#weather-description").innerHTML = `${weatherDecscription},`;
 }
 
 function getWeatherDescription(city) {
@@ -46,6 +23,7 @@ function getWeatherDescription(city) {
     axios.get(apiUrl).then(displayWeatherDescription);
 }
 
+// Current weather emoji
 function displayEmoji(response) {
     let conditionIcon = (response.data.weather[0].icon);
     let conditionDecscription = (response.data.weather[0].description);
@@ -249,6 +227,7 @@ function displayCity(response) {
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
     getLastUpdatedTime(latitude, longitude);
+    getPrecipitation(latitude, longitude);
     getCurrentDayForecast(latitude, longitude);
     getFiveDayForecast(latitude, longitude);
     getTemperature(city);
@@ -306,6 +285,7 @@ function getCurrentLocationName(response) {
     let city = (response.data.name);
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
+    getPrecipitation(latitude, longitude)
     getCurrentDayForecast(latitude, longitude);
     getFiveDayForecast(latitude, longitude);
     displayCurrentCity(city);
@@ -314,6 +294,7 @@ function getCurrentLocationName(response) {
     getHumidity(city);
     getWindSpeed(city);
     getWeatherCondition(city);
+    getWeatherDescription(city);
 }
 
 function getLatitudeAndLongitude(position) {

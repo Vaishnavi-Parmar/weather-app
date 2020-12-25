@@ -8,8 +8,7 @@ header {
 }
 
 h1,
-h2,
-h3 {
+h2 {
     text-align: right;
     position: relative;
     float: right;
@@ -31,26 +30,12 @@ h2 {
     padding: 42px 0 3px 0;
 }
 
-h3 {
-    font-size: 14px;
-    font-weight: 700;
-    color: #8C8D91;
-}
-
 ul {
     padding: none;
 }
 
 li {
     list-style: none;
-}
-
-h4 {
-    font-size: 11px;
-    font-weight: 400;
-    text-align: center;
-    color: #8C8D91;
-    padding: 5px 0 0 0;
 }
 
 hr {
@@ -87,14 +72,9 @@ a:hover {
 
 /* CURRENT WEATHER */
 
-#current-day, 
 #current-time {
     font-size: 12px;
     color: #8C8D91;
-}
-
-#current-day {
-    font-weight: 400;
 }
 
 .vertical-divider-1 {
@@ -150,7 +130,8 @@ a:hover {
     padding-bottom: 10px;
 }
 
-#weather-description {
+#weather-description,
+#precipitation-description {
     font-size: 12px;
     font-style: italic;
     color: #8C8D91;
@@ -312,6 +293,7 @@ a:hover {
 /* FOOTER */
 
 .footer-container {
+    text-align: center;
     width: 100%;
     background-color: #ffffff;
     box-shadow: 0 -20px 20px #ffffff;
@@ -320,6 +302,13 @@ a:hover {
     bottom: 0;
     margin: 0 auto;
     padding-bottom: 60px;
+}
+
+#footer-text {
+    font-size: 11px;
+    font-weight: 400;
+    color: #8C8D91;
+    padding: 5px 0 0 0;
 }
 
 .vertical-divider-2 {
