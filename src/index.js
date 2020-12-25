@@ -118,7 +118,27 @@ function getTemperature(city) {
     axios.get(apiUrl).then(displayTemperature);
 }
 
-// Current Day Forecast // --NEEDS FIXING--
+// Last updated time
+function displayLastUpdatedTime(response) {
+    let lastUpdatedDT = response.data.current.dt;
+    let lastUpdatedTime = document.querySelector("#last-updated-time");
+    let hours = new Date(lastUpdatedDT * 1000).getHours();
+    if (hours < 10) {
+        hours = `0${hours}`;
+    }
+    let minutes = new Date(lastUpdatedDT * 1000).getMinutes();
+    if (minutes < 10) {
+        minutes = `0${minutes}`;
+    }
+    lastUpdatedTime.innerHTML = `${hours}:${minutes} (GMT)`;
+}
+
+function getLastUpdatedTime(latitude, longitude) {
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+    axios.get(apiUrl).then(displayLastUpdatedTime);
+}
+
+// Current Day Forecast
 function getHourlyTime(hourDt) {
     let hours = new Date(hourDt * 1000).getHours();
     if (hours < 10) {
@@ -176,6 +196,7 @@ function getWeekdays(dayNumber) {
         "Sat",
         "Sun"
     ];
+
     return `${forecastDay[weekday]}`;
 }
 
@@ -227,6 +248,7 @@ function displayCity(response) {
     document.querySelector("#city").innerHTML = `${city}`;
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
+    getLastUpdatedTime(latitude, longitude);
     getCurrentDayForecast(latitude, longitude);
     getFiveDayForecast(latitude, longitude);
     getTemperature(city);

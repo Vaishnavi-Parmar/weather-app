@@ -281,6 +281,10 @@ a:hover {
     color: #8C8D91;
 }
 
+#last-updated-time {
+    font-weight: 600;
+}
+
 .unit-conversion-container {
     color: #DFDFDF;
     float: right;
