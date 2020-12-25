@@ -14,7 +14,7 @@ function currentDay() {
     ];
     let currentDay = days[now.getDay()];
     let currentDayValue = document.querySelector("#current-day");
-    currentDayValue.innerHTML = `${currentDay} | `;
+    currentDayValue.innerHTML = `${currentDay}`;
 }
 
 function currentClockTime() {
@@ -151,7 +151,7 @@ function displayCurrentDayForecast(response) {
                 ${Math.round(forecastArray.temp)}°
             </div>
             <div>
-                <img src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
+                <img id="day-forecast-emoji" src="http://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}">
             </div>
         </div>`;
     }
@@ -193,7 +193,7 @@ function displayFiveDayForecast(response) {
                 ${getWeekdays(dayNumber)}
             </li>
             <li>
-                <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}>
+                <img id="forecast-emoji" src="https://openweathermap.org/img/wn/${forecastArray.weather[0].icon}@2x.png" alt="${forecastArray.weather[0].description}">
             </li>
             <li class="forecast-temp">
                 <span id="forecast-min-temp">
