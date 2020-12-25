@@ -9,9 +9,10 @@ header {
 
 h1,
 h2,
-h3,
-h4 {
+h3 {
     text-align: right;
+    position: relative;
+    float: right;
 }
 
 h1 {
