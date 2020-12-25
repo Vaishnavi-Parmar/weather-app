@@ -57,7 +57,7 @@ hr {
     margin-bottom: 8px;
 }
 
-input {
+input::placeholder {
     font-style: italic;
 }
 
