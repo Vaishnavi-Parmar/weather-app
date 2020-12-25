@@ -284,7 +284,8 @@ function getCurrentLocationName(response) {
     let city = (response.data.name);
     let latitude = response.data.coord.lat;
     let longitude = response.data.coord.lon;
-    getForecast(latitude, longitude);
+    getCurrentDayForecast(latitude, longitude);
+    getFiveDayForecast(latitude, longitude);
     displayCurrentCity(city);
     getTemperature(city);
     getVisibility(city);
